@@ -1,21 +1,16 @@
 " plug setting "
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'benmills/vimux'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'tell-k/vim-autopep8'
+Plug 'scrooloose/nerdtree'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'benmills/vimux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'Valloric/YouCompleteMe'
+Plug 'tell-k/vim-autopep8'
 
-
-call vundle#end()
-filetype plugin indent on
+call plug#end()            
 
 " general setting "
 syntax on
@@ -57,7 +52,8 @@ colorscheme solarized
 " airline setting "
 let g:airline_theme='murmur'
 let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
+" need install font "
+"let g:airline_powerline_fonts=1
 
 " tmux setting
 if exists('$TMUX')
@@ -82,8 +78,8 @@ inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
 
 " nerd tree config "
 " ctrl-h = pre buffer, ctrl-l = next buffer "
-nmap <C-w><C-h> :bprev<CR>
-nmap <C-w><C-l> :bnext<CR>
+nmap<expr> <C-w><C-h> LeaveNERDTree() ? ':bprev<CR>' : '' 
+nmap<expr> <C-w><C-l> LeaveNERDTree() ? ':bnext<CR>' : ''
 
 function! LeaveNERDTree()
     if winnr() == g:NERDTree.GetWinNum()
