@@ -9,6 +9,7 @@ Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tell-k/vim-autopep8'
+Plug 'kien/ctrlp.vim'
 
 call plug#end()            
 
