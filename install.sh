@@ -6,8 +6,8 @@ cp .vimrc ~/
 cp .tmux.conf ~/
 tmux sourc-file ~/.tmux.conf
 # add color scheme
-mkdir -p ~/.vim/plugged
-cp -r vim-colors-solarized/ ~/.vim/plugged/vim-colors-solarized
+mkdir -p ~/.vim/plugged/vim-colors-solarized
+git clone https://github.com/altercation/vim-colors-solarized ~/.vim/plugged/vim-colors-solarized
 # vim plugin 
 vim +PlugInstall +qall
 # install youcompleteme
