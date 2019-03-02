@@ -14,9 +14,8 @@ Plug 'kien/ctrlp.vim'
 call plug#end()            
 
 " general setting "
-syntax on
+set nocompatible
 syntax enable
-set backspace=2
 set ai
 set tabstop=4
 set shiftwidth=4
@@ -88,5 +87,16 @@ function! LeaveNERDTree()
     else 
         return 1
     endif
+endfunction
+
+" fix i(inside) and a(a)
+onoremap a :<c-u>call <SID>NextTextObject('a')<cr>
+xnoremap a :<c-u>call <SID>NextTextObject('a')<cr>
+onoremap i :<c-u>call <SID>NextTextObject('i')<cr>
+xnoremap i :<c-u>call <SID>NextTextObject('i')<cr>
+function! s:NextTextObject(motion)
+  echo
+  let c = nr2char(getchar())
+  exe "normal! f".c."v".a:motion.c
 endfunction
 
