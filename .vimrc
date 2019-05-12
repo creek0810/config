@@ -23,6 +23,7 @@ set expandtab
 set nu
 set wrap
 set incsearch
+set clipboard=unnamed
 set encoding=utf-8
 augroup relative_number
     autocmd!
