@@ -10,8 +10,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tell-k/vim-autopep8'
 Plug 'kien/ctrlp.vim'
+Plug 'elzr/vim-json'
+Plug 'vim-python/python-syntax'
 
-call plug#end()            
+call plug#end()
 
 " general setting "
 set nocompatible
@@ -23,7 +25,6 @@ set expandtab
 set nu
 set wrap
 set incsearch
-set clipboard=unnamed
 set encoding=utf-8
 augroup relative_number
     autocmd!
@@ -43,8 +44,7 @@ let mapleader = ";"
 " inoremap <Down> <Nop>
 " inoremap <Left> <Nop>
 " inoremap <Right> <Nop>
-
-
+"
 " solarized setting "
 set background=dark
 let g:solarized_termcolors=256
@@ -59,7 +59,7 @@ let g:airline#extensions#tabline#enabled=1
 " tmux setting
 if exists('$TMUX')
     set term=screen-256color
-endif   
+endif
 map <Leader>vp :VimuxPromptCommand<CR>
 
 " nerd tree setting
@@ -77,15 +77,18 @@ inoremap <expr> <CR> pumvisible() ? '<C-y>' : '<CR>'
 inoremap <expr> <Down>     pumvisible() ? '\<C-n>' : '\<Down>'
 inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
 
+" python syntax "
+let g:python_highlight_all = 1
+
 " nerd tree config "
 " ctrl-h = pre buffer, ctrl-l = next buffer "
-nmap<expr> <C-w><C-h> LeaveNERDTree() ? ':bprev<CR>' : '' 
+nmap<expr> <C-w><C-h> LeaveNERDTree() ? ':bprev<CR>' : ''
 nmap<expr> <C-w><C-l> LeaveNERDTree() ? ':bnext<CR>' : ''
 
 function! LeaveNERDTree()
     if winnr() == g:NERDTree.GetWinNum()
         return 0
-    else 
+    else
         return 1
     endif
 endfunction
@@ -100,4 +103,8 @@ function! s:NextTextObject(motion)
   let c = nr2char(getchar())
   exe "normal! f".c."v".a:motion.c
 endfunction
+
+" format json
+nmap =j :%!python -m json.tool<CR>
+
 
